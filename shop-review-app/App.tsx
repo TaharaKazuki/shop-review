@@ -1,26 +1,28 @@
-import { useEffect } from 'react'
-import { StatusBar } from 'expo-status-bar'
+import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import firebase from 'firebase'
-import 'firebase/firestore'
+import { getShops } from './src/lib/firebase'
+import { Shop } from './src/lib/types/shop'
 
 export default function App() {
+  const [shops, setShops] = useState<Shop[]>([])
+
   useEffect(() => {
     getFirebaseItems()
   }, [])
 
   const getFirebaseItems = async () => {
-    const snapshot = await firebase.firestore().collection('shops').get()
-    const shops = snapshot.docs.map((doc) => doc.data())
-    console.info(shops)
+    const shops = await getShops()
+    setShops(shops)
   }
 
-  return (
-    <View style={styles.container}>
-      <Text>Hello Review App!</Text>
-      <StatusBar style="auto" />
+  const shopItems = shops.map((shop, index) => (
+    <View style={{ margin: 10 }} key={index.toString()}>
+      <Text>{shop.name}</Text>
+      <Text>{shop.place}</Text>
     </View>
-  )
+  ))
+
+  return <View style={styles.container}>{shopItems}</View>
 }
 
 const styles = StyleSheet.create({
