@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { getShops } from './src/lib/firebase'
 import { Shop } from './src/lib/types/shop'
+import { ShopReviewItem } from './src/components/ShopReviewItem'
 
 export default function App() {
   const [shops, setShops] = useState<Shop[]>([])
@@ -16,10 +17,7 @@ export default function App() {
   }
 
   const shopItems = shops.map((shop, index) => (
-    <View style={{ margin: 10 }} key={index.toString()}>
-      <Text>{shop.name}</Text>
-      <Text>{shop.place}</Text>
-    </View>
+    <ShopReviewItem shop={shop} key={index.toString()} />
   ))
 
   return <View style={styles.container}>{shopItems}</View>
