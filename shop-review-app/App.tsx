@@ -12,7 +12,6 @@ export default function App() {
 
   const getFirebaseItems = async () => {
     const shops = await getShops()
-    console.info('shop', shops)
     setShops(shops)
   }
 
