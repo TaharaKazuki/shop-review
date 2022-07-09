@@ -9,14 +9,30 @@ type Props = {
 }
 
 export const Stars: FC<Props> = ({ score, starSize = 16, textSize = 14 }) => {
+  const starStyle = [styles.star, { fontSize: starSize }]
   return (
     <View style={styles.container}>
-      <FontAwesome name="star" style={[styles.star, { fontSize: starSize }]} />
-      <FontAwesome name="star" style={[styles.star, { fontSize: starSize }]} />
-      <FontAwesome name="star" style={[styles.star, { fontSize: starSize }]} />
-      <FontAwesome name="star" style={[styles.star, { fontSize: starSize }]} />
-      <FontAwesome name="star" style={[styles.star, { fontSize: starSize }]} />
-      <Text style={styles.scoreText}>{score}</Text>
+      <FontAwesome
+        style={starStyle}
+        name={score >= 1 ? 'star' : score >= 0.5 ? 'star-half-o' : 'star-o'}
+      />
+      <FontAwesome
+        style={starStyle}
+        name={score >= 2 ? 'star' : score >= 1.5 ? 'star-half-o' : 'star-o'}
+      />
+      <FontAwesome
+        style={starStyle}
+        name={score >= 3 ? 'star' : score >= 2.5 ? 'star-half-o' : 'star-o'}
+      />
+      <FontAwesome
+        style={starStyle}
+        name={score >= 4 ? 'star' : score >= 3.5 ? 'star-half-o' : 'star-o'}
+      />
+      <FontAwesome
+        style={starStyle}
+        name={score >= 5 ? 'star' : score >= 4.5 ? 'star-half-o' : 'star-o'}
+      />
+      <Text style={[styles.scoreText, { fontSize: textSize }]}>{score}</Text>
     </View>
   )
 }
