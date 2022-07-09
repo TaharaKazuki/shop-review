@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   image: {
-    width: IMAGE_WIDTH,
+    width: 'auto',
     height: IMAGE_WIDTH * 0.7,
   },
   nameText: {
