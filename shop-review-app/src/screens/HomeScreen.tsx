@@ -3,8 +3,15 @@ import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native'
 import { getShops } from '../lib/firebase'
 import { Shop } from '../lib/types/shop'
 import { ShopReviewItem } from '../components/ShopReviewItem'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-export const HomeScreen = ({ navigation }) => {
+type RootStackParamList = {
+  Shop: undefined
+}
+
+type Props = NativeStackScreenProps<RootStackParamList>
+
+export const HomeScreen = ({ navigation }: Props) => {
   const [shops, setShops] = useState<Shop[]>([])
 
   useEffect(() => {
